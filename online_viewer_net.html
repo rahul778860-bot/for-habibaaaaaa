@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apology Card</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #fce4ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 3px solid #ff4081;
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(255, 64, 129, 0.15);
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .heart-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .message {
+      color: #d81b60;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 35px;
+    }
+
+    .thank-you-text {
+      color: #e91e63;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      min-height: 50px;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-yes {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .btn-no {
+      background-color: #e74c3c;
+      color: white;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="heart-icon" id="heart">💝</div>
+    
+    <div class="message" id="msgText">
+      মোক ক্ষমা কৰি দে মোৰ জান। মই আৰু জীৱনতো তেনেকুৱা নকৰো
+    </div>
+
+    <div class="buttons-container" id="btnContainer">
+      <button class="btn btn-yes" onclick="showThankYou()">हाँ! (YES) 💖</button>
+      <button class="btn btn-no" id="noBtn">ना (NO) 😢</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+
+    function moveButton() {
+      // Calculate random positions within window bounds
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = `${Math.max(20, x)}px`;
+      noBtn.style.top = `${Math.max(20, y)}px`;
+    }
+
+    // Run away on mouse hover or touch
+    noBtn.addEventListener('mouseover', moveButton);
+    noBtn.addEventListener('touchstart', moveButton);
+
+    // Function to handle YES click
+    function showThankYou() {
+      document.getElementById('heart').innerHTML = '🥰❤️🎉';
+      document.getElementById('btnContainer').style.display = 'none';
+      
+      const msgText = document.getElementById('msgText');
+      msgText.className = 'thank-you-text';
+      msgText.innerText = 'THANK YOU MY DEAR BABY HABIBA❤️';
+    }
+  </script>
+
+</body>
+</html>
